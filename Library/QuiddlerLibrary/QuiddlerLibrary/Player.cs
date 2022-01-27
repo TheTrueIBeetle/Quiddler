@@ -10,36 +10,44 @@ using System;
 
 namespace QuiddlerLibrary
 {
-    public class Player : IPlayer
+    internal class Player : IPlayer
     {
+        private Deck deck;
 
         public int CardCount => throw new NotImplementedException();
 
         public int TotalPoints => throw new NotImplementedException();
 
+        public Player(Deck d)
+        {
+            this.deck = d;
+        }
+
         public bool Discard(string card)
         {
-            throw new NotImplementedException();
+            this.deck.CardsPerPlayer--;
+            return true;
         }
 
         public string DrawCard()
         {
-            throw new NotImplementedException();
+            this.deck.CardsPerPlayer++;
+            return "";
         }
 
         public string PickupTopDiscard()
         {
-            throw new NotImplementedException();
+            return "";
         }
 
         public int PlayWord(string candidate)
         {
-            throw new NotImplementedException();
+            return 0;
         }
 
         public int TestWord(string candidate)
         {
-            throw new NotImplementedException();
+            return 0;
         }
     }
 }
