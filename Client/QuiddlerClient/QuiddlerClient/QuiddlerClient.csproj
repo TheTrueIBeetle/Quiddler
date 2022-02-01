@@ -5,4 +5,10 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="QuiddlerLibrary">
+      <HintPath>..\..\..\Library\QuiddlerLibrary\QuiddlerLibrary\bin\Debug\net5.0\QuiddlerLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

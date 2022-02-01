@@ -14,7 +14,12 @@ namespace QuiddlerClient
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            QuiddlerLibrary.Deck deck = new QuiddlerLibrary.Deck();
+            
+
+            Console.WriteLine(deck.About);
+            
+            deck.
         }
     }
 }

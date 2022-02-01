@@ -13,9 +13,11 @@ namespace QuiddlerLibrary
     internal class Card
     {
         public string Letter { get; set; }
-        public Card(string letter)
+        public int Points { get; set; }
+        public Card(string letter, int points)
         {
             this.Letter = letter;
+            this.Points = points;
         }
     }
 }

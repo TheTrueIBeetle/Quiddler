@@ -21,52 +21,52 @@ namespace QuiddlerLibrary
             List<Card> cardList = new List<Card>();
             for (int i = 0; i <= 2; i++)
             {
-                cardList.Add(new Card("b"));
-                cardList.Add(new Card("c"));
-                cardList.Add(new Card("f"));
-                cardList.Add(new Card("h"));
-                cardList.Add(new Card("j"));
-                cardList.Add(new Card("k"));
-                cardList.Add(new Card("m"));
-                cardList.Add(new Card("p"));
-                cardList.Add(new Card("q"));
-                cardList.Add(new Card("v"));
-                cardList.Add(new Card("w"));
-                cardList.Add(new Card("x"));
-                cardList.Add(new Card("z"));
-                cardList.Add(new Card("qu"));
-                cardList.Add(new Card("in"));
-                cardList.Add(new Card("er"));
-                cardList.Add(new Card("cl"));
-                cardList.Add(new Card("th"));
+                cardList.Add(new Card("b", 8));
+                cardList.Add(new Card("c", 8));
+                cardList.Add(new Card("f", 6));
+                cardList.Add(new Card("h", 7));
+                cardList.Add(new Card("j", 13));
+                cardList.Add(new Card("k", 8));
+                cardList.Add(new Card("m", 5));
+                cardList.Add(new Card("p", 6));
+                cardList.Add(new Card("q", 15));
+                cardList.Add(new Card("v", 11));
+                cardList.Add(new Card("w", 10));
+                cardList.Add(new Card("x", 12));
+                cardList.Add(new Card("z", 14));
+                cardList.Add(new Card("qu", 9));
+                cardList.Add(new Card("in", 7));
+                cardList.Add(new Card("er", 7));
+                cardList.Add(new Card("cl", 10));
+                cardList.Add(new Card("th", 9));
             }
             for (int i = 0; i <= 4; i++)
             {
-                cardList.Add(new Card("d"));
-                cardList.Add(new Card("g"));
-                cardList.Add(new Card("l"));
-                cardList.Add(new Card("s"));
-                cardList.Add(new Card("y"));
+                cardList.Add(new Card("d", 5));
+                cardList.Add(new Card("g", 6));
+                cardList.Add(new Card("l", 3));
+                cardList.Add(new Card("s", 3));
+                cardList.Add(new Card("y", 4));
             }
             for (int i = 0; i <= 6; i++)
             {
-                cardList.Add(new Card("n"));
-                cardList.Add(new Card("r"));
-                cardList.Add(new Card("t"));
-                cardList.Add(new Card("u"));
+                cardList.Add(new Card("n", 5));
+                cardList.Add(new Card("r", 5));
+                cardList.Add(new Card("t", 3));
+                cardList.Add(new Card("u", 4));
             }
             for (int i = 0; i <= 8; i++)
             {
-                cardList.Add(new Card("i"));
-                cardList.Add(new Card("o"));
+                cardList.Add(new Card("i", 2));
+                cardList.Add(new Card("o", 2));
             }
             for (int i = 0; i < 10; i++)
             {
-                cardList.Add(new Card("a"));
+                cardList.Add(new Card("a", 2));
             }
             for (int i = 0; i < 12; i++)
             {
-                cardList.Add(new Card("e"));
+                cardList.Add(new Card("e", 2));
             }
 
             //Shuffle list
@@ -78,6 +78,7 @@ namespace QuiddlerLibrary
             {
                 cardStack.Push(c);
             }
+
             return cardStack;
         }
     }
