@@ -7,14 +7,16 @@
  */
 
 using System;
+using System.Collections.Generic;
 
 namespace QuiddlerLibrary
 {
     public class Deck : IDeck
     {
         internal static int allPlayerCardsTotal = 0; //This member keeps track of all players cards in hand at all times
+        internal static Stack<Card> cardStack;
+
         string IDeck.About => "Quiddler (TM) Library, Michael I & Luke B.";
-        
         public int CardCount { get { return 118 - allPlayerCardsTotal; } }
         public int CardsPerPlayer { get { return CardsPerPlayer; } 
             set { 
@@ -31,6 +33,7 @@ namespace QuiddlerLibrary
       
         public Deck()
         {
+            cardStack = Helper.InitNewCardStack();
         }
         
         //Methods
