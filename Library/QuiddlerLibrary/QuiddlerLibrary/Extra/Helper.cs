@@ -3,13 +3,13 @@
  * File Name: Helper.cs
  * Author(s): L. Bas, M. Ivanov
  * Date Started: 2022-01-24
- * Context: Helper toolbox class to hold some static helper methods
+ * Context: Helper toolbox class to hold various static helper methods. A lot of the messy logic goes in this class
  */
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Text;
 
 namespace QuiddlerLibrary
 {
@@ -80,6 +80,131 @@ namespace QuiddlerLibrary
             }
 
             return cardStack;
+        }
+
+        public static string ShowStackContents(Stack<Card> stack) //TODO: Finish this
+        {
+            List<Card> list = new List<Card>();
+            //Dictionary<string, int> hashMap = new Dictionary<string, int>();  
+            int count = 0;
+            while (count < stack.Count)
+            {
+                list.Add(stack.Pop());
+                count++;
+            }
+            //Count how many of each card in the list
+            /*int a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, qu, In, er, cl, th;
+            a = b = c = d = e = f = g = h = i = j = k = l = m = n = o = p = q = r = s = t = u = v = w = x = y = z = qu = In = er = cl = th = 0;
+            foreach(Card counterCard in list)
+            {
+                switch (counterCard.Letter)
+                {
+                    case "a":
+                        a++;
+                        break;
+                    case "b":
+                        b++;
+                        break;
+                    case "c":
+                        c++;
+                        break;
+                    case "d":
+                        d++;
+                        break;
+                    case "e":
+                        e++;
+                        break;
+                    case "f":
+                        f++;
+                        break;
+                    case "g":
+                        g++;
+                        break;
+                    case "h":
+                        h++;
+                        break;
+                    case "i":
+                        i++;
+                        break;
+                    case "j":
+                        j++;
+                        break;
+                    case "k":
+                        k++;
+                        break;
+                    case "l":
+                        l++;
+                        break;
+                    case "m":
+                        m++;
+                        break;
+                    case "n":
+                        n++;
+                        break;
+                    case "o":
+                        o++;
+                        break;
+                    case "p":
+                        p++;
+                        break;
+                    case "q":
+                        q++;
+                        break;
+                    case "r":
+                        r++;
+                        break;
+                    case "s":
+                        s++;
+                        break;
+                    case "t":
+                        t++;
+                        break;
+                    case "u":
+                        u++;
+                        break;
+                    case "v":
+                        v++;
+                        break;
+                    case "w":
+                        w++;
+                        break;
+                    case "x":
+                        x++;
+                        break;
+                    case "y":
+                        y++;
+                        break;
+                    case "z":
+                        z++;
+                        break;
+                    case "qu":
+                        qu++;
+                        break;
+                    case "in":
+                        In++;
+                        break;
+                    case "er":
+                        er++;
+                        break;
+                    case "cl":
+                        cl++;
+                        break;
+                    case "th":
+                        th++;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            List<Card> uniqueList = list.Distinct().ToList();*/
+
+            //Create and return string
+            StringBuilder sb = new StringBuilder();
+            foreach (Card card in list)
+            {
+                sb.Append(card.Letter + ", ");
+            }
+            return sb.ToString();
         }
     }
 }

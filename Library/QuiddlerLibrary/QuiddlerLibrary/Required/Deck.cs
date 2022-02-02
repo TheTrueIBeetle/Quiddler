@@ -15,6 +15,7 @@ namespace QuiddlerLibrary
     {
         internal static int allPlayerCardsTotal = 0; //This member keeps track of all players cards in hand at all times
         internal static Stack<Card> cardStack;
+        internal static Stack<Card> discardPile;
 
         string IDeck.About => "Quiddler (TM) Library, Michael I & Luke B.";
         public int CardCount { get { return 118 - allPlayerCardsTotal; } }
@@ -28,12 +29,13 @@ namespace QuiddlerLibrary
                 }
             } 
         }
-        public string TopDiscard => throw new NotImplementedException();
+        public string TopDiscard { get { return discardPile.Peek().Letter; } }
 
       
         public Deck()
         {
             cardStack = Helper.InitNewCardStack();
+            discardPile = new Stack<Card>();
         }
         
         //Methods
@@ -49,8 +51,7 @@ namespace QuiddlerLibrary
         }
         public override string ToString()
         {
-            return "";
-            //TODO: Change eventually to show contents of deck
+            return Helper.ShowStackContents(cardStack);
         }
 
     }
