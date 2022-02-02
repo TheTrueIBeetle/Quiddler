@@ -14,12 +14,11 @@ namespace QuiddlerClient
     {
         static void Main(string[] args)
         {
-            QuiddlerLibrary.Deck deck = new QuiddlerLibrary.Deck();
-            
-
+            QuiddlerLibrary.IDeck deck = new QuiddlerLibrary.Deck();
             Console.WriteLine(deck.About);
-            
-            deck.
+
+            Console.WriteLine("\nDeck initialized with the following 118 cards:");
+            Console.WriteLine(deck.ToString());
         }
     }
 }
