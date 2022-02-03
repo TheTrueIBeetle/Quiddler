@@ -30,11 +30,11 @@ namespace QuiddlerLibrary
         private readonly int[] CardPoints = {2, 2, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8,
         9, 9, 10, 10, 11, 12, 13, 14, 15};
 
-        internal static Stack<Card> discardPile;
+        internal Stack<Card> discardPile;
         internal static int allPlayerCardsTotal = 0; //This member keeps track of all players cards in hand at all times
 
         // holds the list of card letters & their counts
-        private static List<Card> cardsList = new List<Card>();
+        internal List<Card> cardsList = new List<Card>();
 
         public Deck()
         {
@@ -91,7 +91,7 @@ namespace QuiddlerLibrary
         }
 
         // counts how many cards are per each letter
-        private static int LetterCounter(string letter)
+        private int LetterCounter(string letter)
         {
             int letterCounter = 0;
 
