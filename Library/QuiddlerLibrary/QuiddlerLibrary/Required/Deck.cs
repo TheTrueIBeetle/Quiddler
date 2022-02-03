@@ -8,6 +8,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace QuiddlerLibrary
 {
@@ -55,7 +56,12 @@ namespace QuiddlerLibrary
                     valueCounter++;
                 }
             }
+
+            // shuffle (not sure if shuffle here or in a function) 
+            Random random = new Random();
+            cardsList = cardsList.OrderBy(card => random.Next()).ToList();
         }
+    
 
         public string About => "Quiddler (TM) Library, Michael I & Luke B.";
 
@@ -89,6 +95,29 @@ namespace QuiddlerLibrary
             }
             return p;
         }
+
+        // grab the cards points at the specified index
+        private int GetLettersValue(int valueIndex)
+        {
+            return CardPoints[valueIndex];
+        }
+
+        // grab the index of the current letter
+        private int GetLettersIndex(string letterIndex)
+        {
+            for (int i = 0; i < CardLetters.Length; ++i)
+            {
+                if (letterIndex == CardLetters[i]) return i;
+            }
+            return 0;
+        }
+
+        // match the cards letter value with the cards points value and return
+        public int GetPointsForCard(string card)
+        {     
+            return GetLettersValue(GetLettersIndex(card));
+        } 
+    
 
         // counts how many cards are per each letter
         private int LetterCounter(string letter)
