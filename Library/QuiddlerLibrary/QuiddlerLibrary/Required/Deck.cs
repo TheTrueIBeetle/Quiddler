@@ -71,13 +71,9 @@ namespace QuiddlerLibrary
             set
             {
                 if (value < 3 || value > 10)
-                {
                     throw new ArgumentOutOfRangeException($"Value must be greater than 3 and less than 10. Value given: {value}");
-                }
                 else
-                {
                     CardsPerPlayer = value;
-                }
             }
         }
 
@@ -114,8 +110,9 @@ namespace QuiddlerLibrary
 
         // match the cards letter value with the cards points value and return
         public int GetPointsForCard(string card)
-        {     
-            return GetLettersValue(GetLettersIndex(card));
+        {
+            int letterVal = GetLettersValue(GetLettersIndex(card));
+            return letterVal;
         } 
     
 
