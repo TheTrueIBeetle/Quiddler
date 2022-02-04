@@ -31,7 +31,7 @@ namespace QuiddlerLibrary
 
         public bool Discard(string card)
         {
-            this.deck.CardsPerPlayer--;
+            this.deck.allPlayerCardsTotal++;
             //Do a check to see if string is a valid letter (using cards letter prop)
             for (int i = 0; i < cardsInHand.Count; i++)
             {
@@ -47,7 +47,7 @@ namespace QuiddlerLibrary
 
         public string DrawCard()
         {
-            this.deck.CardsPerPlayer++;
+            this.deck.allPlayerCardsTotal++;
             this.cardsInHand.Add(deck.cardsList.ElementAt(deck.cardsList.Count - 1));
             string cardDrawn = deck.cardsList.ElementAt(deck.cardsList.Count - 1).Letter;
 
@@ -57,7 +57,7 @@ namespace QuiddlerLibrary
 
         public string PickupTopDiscard()
         {
-            this.deck.CardsPerPlayer++;
+            this.deck.allPlayerCardsTotal++;
             string discardCard = this.deck.discardPile.Pop().Letter;
             return discardCard;
         }

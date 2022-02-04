@@ -25,22 +25,21 @@ namespace QuiddlerClient
             Console.WriteLine($"\nDeck initialized with the following {iDeck.CardCount} cards:");
             Console.WriteLine(iDeck.ToString());
 
-            GetNumPlayers();
+            int numPlayers = GetNumPlayers();
+            int numCardsToEachPlayer = NumCardsDealtToEachPlayer();
 
-            int num = NumCardsDealtToEachPlayer();
-            iDeck.CardsPerPlayer = num;
-            
+            iDeck.CardsPerPlayer = numCardsToEachPlayer;
+            Console.WriteLine($"\nCards were dealt to {numPlayers} player(s)");
+
             // add each player to allPlayers
-            for(int i = 0; i < GetNumPlayers(); i++)
+            for (int i = 0; i < numPlayers; i++)
             {
                 allPlayers.Add(iDeck.NewPlayer());
             }
 
-            cardsDealtText();
+            
 
             /*       
-            Console.WriteLine("\npoints of card t: " + deck.GetPointsForCard("t"));
-            Console.WriteLine("\npoints of card er: " + deck.GetPointsForCard("er"));
             Console.WriteLine("\npoints of card v: " + deck.GetPointsForCard("v"));
             */
         }
@@ -50,7 +49,7 @@ namespace QuiddlerClient
             string playerCountInput;
             int playerCountInputToInt;
 
-            Console.WriteLine("How many players are there? (1-8): ");
+            Console.Write("\nHow many players are there? (1-8): ");
             playerCountInput = Console.ReadLine();
             playerCountInputToInt = Convert.ToInt32(playerCountInput);
 
@@ -62,16 +61,11 @@ namespace QuiddlerClient
             string numCardsInput;
             int numCardsInputToInt;
 
-            Console.WriteLine("How many cards will be dealt to each player? (3-10): ");
+            Console.Write("\nHow many cards will be dealt to each player? (3-10): ");
             numCardsInput = Console.ReadLine();
             numCardsInputToInt = Convert.ToInt32(numCardsInput);
 
             return numCardsInputToInt;
-        }
-
-        public static void cardsDealtText()
-        {
-            Console.WriteLine($"Cards were dealt to ${GetNumPlayers()}");
         }
     }
 

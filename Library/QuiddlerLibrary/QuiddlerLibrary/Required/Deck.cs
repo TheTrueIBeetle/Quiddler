@@ -32,7 +32,7 @@ namespace QuiddlerLibrary
         9, 9, 10, 10, 11, 12, 13, 14, 15};
 
         internal Stack<Card> discardPile;
-        internal static int allPlayerCardsTotal = 0; //This member keeps track of all players cards in hand at all times
+        internal int allPlayerCardsTotal = 0; //This member keeps track of all players cards in hand at all times
 
         // holds the list of card letters & their counts
         internal List<Card> cardsList = new List<Card>();
@@ -65,15 +65,16 @@ namespace QuiddlerLibrary
 
         public string About => "Quiddler (TM) Library, Michael I & Luke B.";
 
+        public int cardsPerPlayer;
         public int CardsPerPlayer
         {
-            get { return CardsPerPlayer; }
+            get { return cardsPerPlayer; }
             set
             {
                 if (value < 3 || value > 10)
                     throw new ArgumentOutOfRangeException($"Value must be greater than 3 and less than 10. Value given: {value}");
                 else
-                    CardsPerPlayer = value;
+                    cardsPerPlayer = value;
             }
         }
 
