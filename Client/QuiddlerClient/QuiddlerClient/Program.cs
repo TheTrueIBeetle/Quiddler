@@ -37,7 +37,13 @@ namespace QuiddlerClient
                 allPlayers.Add(iDeck.NewPlayer());
             }
 
-            
+            //FIXME: Test stuff
+            Console.WriteLine("Number of cards in player 1 hand: " + allPlayers[0].CardCount);
+            Console.WriteLine("Contents of hand: " + allPlayers[0].ToString());
+            allPlayers[0].DrawCard();
+            Console.WriteLine("Contents of hand after draw: " + allPlayers[0].ToString());
+
+
 
             /*       
             Console.WriteLine("\npoints of card v: " + deck.GetPointsForCard("v"));

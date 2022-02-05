@@ -85,7 +85,7 @@ namespace QuiddlerLibrary
         public IPlayer NewPlayer()
         {
             Player p = new Player(this); //Giving player constructor an instance of this deck
-            for (int i = 0; i <= CardsPerPlayer; i++)
+            for (int i = 0; i < CardsPerPlayer; i++)
             {
                 // allPlayerCardsTotal++;
                 p.DrawCard();
