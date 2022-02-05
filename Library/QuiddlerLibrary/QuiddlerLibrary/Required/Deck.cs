@@ -32,7 +32,7 @@ namespace QuiddlerLibrary
         9, 9, 10, 10, 11, 12, 13, 14, 15};
 
         internal Stack<Card> discardPile;
-        internal int allPlayerCardsTotal = 0; //This member keeps track of all players cards in hand at all times
+        internal int cardsDrawnTotal = 0; //This member keeps track of all players cards in hand at all times
 
         // holds the list of card letters & their counts
         internal List<Card> cardsList = new List<Card>();
@@ -80,7 +80,7 @@ namespace QuiddlerLibrary
 
         public string TopDiscard { get { return discardPile.Peek().Letter; } }
 
-        public int CardCount { get { return 118 - allPlayerCardsTotal; } }
+        public int CardCount { get { return 118 - cardsDrawnTotal; } }
 
         public IPlayer NewPlayer()
         {

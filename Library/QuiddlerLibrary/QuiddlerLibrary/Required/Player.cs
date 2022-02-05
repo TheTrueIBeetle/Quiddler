@@ -19,19 +19,23 @@ namespace QuiddlerLibrary
         private Deck deck;
         private List<Card> cardsInHand = new List<Card>();
         private static Application SpellChecker = new Application();
+        private int pointsAccum = 0;
 
-        public int CardCount => throw new NotImplementedException();
+        public int CardCount { get { return cardsInHand.Count; } }
 
-        public int TotalPoints => throw new NotImplementedException();
+        public int TotalPoints { get { return pointsAccum; } }
 
         public Player(Deck d)
         {
             this.deck = d;
         }
+        ~Player()
+        {
+            SpellChecker.Quit();
+        }
 
         public bool Discard(string card)
         {
-            this.deck.allPlayerCardsTotal++;
             //Do a check to see if string is a valid letter (using cards letter prop)
             for (int i = 0; i < cardsInHand.Count; i++)
             {
@@ -47,7 +51,7 @@ namespace QuiddlerLibrary
 
         public string DrawCard()
         {
-            this.deck.allPlayerCardsTotal++;
+            this.deck.cardsDrawnTotal++;
             this.cardsInHand.Add(deck.cardsList.ElementAt(deck.cardsList.Count - 1));
             string cardDrawn = deck.cardsList.ElementAt(deck.cardsList.Count - 1).Letter;
 
@@ -57,14 +61,35 @@ namespace QuiddlerLibrary
 
         public string PickupTopDiscard()
         {
-            this.deck.allPlayerCardsTotal++;
             string discardCard = this.deck.discardPile.Pop().Letter;
             return discardCard;
         }
 
         public int PlayWord(string candidate)
         {
-            return 0;
+            //Trim string first so there is no whitespace
+            string trimmedString = String.Concat(candidate.Where(c => !Char.IsWhiteSpace(c)));
+
+            int pointsForWord = TestWord(candidate);
+            if (pointsForWord > 0)
+            {
+                char[] charArr = trimmedString.ToCharArray();
+                foreach (char c in charArr)
+                {
+                    string characterStr = c.ToString();
+                    //Search for each character in hand corresponding with candidate characters and remove them from hand
+                    for (int i = 0; i < cardsInHand.Count; i++)
+                    {
+                        if (characterStr == cardsInHand.ElementAt(i).Letter)
+                        {
+                            cardsInHand.RemoveAt(i);
+                            break;
+                        }
+                    }
+                }
+            }
+            this.pointsAccum += pointsForWord;
+            return pointsForWord;
         }
 
         public int TestWord(string candidate)
