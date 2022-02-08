@@ -40,6 +40,7 @@ namespace QuiddlerLibrary
         public Deck()
         {
             InitializeNewDeck();
+            this.discardPile = new Stack<Card>();
         }
 
         private void InitializeNewDeck()
@@ -78,7 +79,16 @@ namespace QuiddlerLibrary
             }
         }
 
-        public string TopDiscard { get { return discardPile.Peek().Letter; } }
+        public string TopDiscard 
+        { 
+            get {
+                if (discardPile.Peek().Letter == null)
+                {
+                    return "";
+                }
+                return discardPile.Peek().Letter;
+            } 
+        }
 
         public int CardCount { get { return 118 - cardsDrawnTotal; } }
 

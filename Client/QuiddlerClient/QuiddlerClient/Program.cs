@@ -37,13 +37,29 @@ namespace QuiddlerClient
                 allPlayers.Add(iDeck.NewPlayer());
             }
 
+            Console.WriteLine($"\nThe top card which was '{iDeck.TopDiscard}' was moved to the discard pile");
+
             //FIXME: Test stuff
-            Console.WriteLine("Number of cards in player 1 hand: " + allPlayers[0].CardCount);
-            Console.WriteLine("Contents of hand: " + allPlayers[0].ToString());
-            allPlayers[0].DrawCard();
-            Console.WriteLine("Contents of hand after draw: " + allPlayers[0].ToString());
+            //Console.WriteLine("Number of cards in player 1 hand: " + allPlayers[0].CardCount);
+            //Console.WriteLine("Contents of hand: " + allPlayers[0].ToString());
+            //allPlayers[0].DrawCard();
+            //Console.WriteLine("Contents of hand after draw: " + allPlayers[0].ToString());
 
+            bool gameNotDone = true;
+            // ADD: end conditition 
+            while (gameNotDone)
+            {
+                for(int i = 0; i < allPlayers.Count; i++)
+                {
+                    Console.WriteLine("\n--------------------------------------------------------------");
+                    Console.WriteLine($"Player '{i + 1} ({allPlayers[i].TotalPoints} points)");
+                    Console.WriteLine("--------------------------------------------------------------\n");
 
+                    Console.WriteLine($"The deck now contains the following {iDeck.CardCount} cards...");
+                    Console.WriteLine($"{iDeck.ToString()}");
+                }
+            }
+            
 
             /*       
             Console.WriteLine("\npoints of card v: " + deck.GetPointsForCard("v"));
