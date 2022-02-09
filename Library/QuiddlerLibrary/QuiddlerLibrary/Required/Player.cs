@@ -61,7 +61,8 @@ namespace QuiddlerLibrary
 
         public string PickupTopDiscard()
         {
-            string discardCard = this.deck.discardPile.Pop().Letter;
+            string discardCard = this.deck.discardPile.Peek().Letter;
+            this.deck.discardPile.Pop();
             return discardCard;
         }
 

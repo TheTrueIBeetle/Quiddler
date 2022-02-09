@@ -19,7 +19,7 @@ namespace QuiddlerClient
             // holds all the players playing
             List<IPlayer> allPlayers = new List<IPlayer>();
             
-            QuiddlerLibrary.IDeck iDeck = new QuiddlerLibrary.Deck();
+            QuiddlerLibrary.Deck iDeck = new QuiddlerLibrary.Deck();
             Console.WriteLine(iDeck.About);
 
             Console.WriteLine($"\nDeck initialized with the following {iDeck.CardCount} cards:");
@@ -37,13 +37,14 @@ namespace QuiddlerClient
                 allPlayers.Add(iDeck.NewPlayer());
             }
 
-            Console.WriteLine($"\nThe top card which was '{iDeck.TopDiscard}' was moved to the discard pile");
-
-            //FIXME: Test stuff
-            //Console.WriteLine("Number of cards in player 1 hand: " + allPlayers[0].CardCount);
-            //Console.WriteLine("Contents of hand: " + allPlayers[0].ToString());
-            //allPlayers[0].DrawCard();
-            //Console.WriteLine("Contents of hand after draw: " + allPlayers[0].ToString());
+            /*try
+            {
+                Console.WriteLine($"\nThe top card which was '{iDeck.TopDiscard}' was moved to the discard pile");
+            }
+            catch (InvalidOperationException)
+            {
+                Console.WriteLine("Discard pile is empty");
+            }*/
 
             bool gameNotDone = true;
             // ADD: end conditition 
@@ -57,6 +58,68 @@ namespace QuiddlerClient
 
                     Console.WriteLine($"The deck now contains the following {iDeck.CardCount} cards...");
                     Console.WriteLine($"{iDeck.ToString()}");
+
+                    Console.WriteLine($"\nYour cards are: {allPlayers[i].ToString()}");
+                    Console.WriteLine($"Do you want the top card in the discard pile which is '{iDeck.TopDiscard}'? (y/n): ");
+                    string pickupDiscardkey = Console.ReadLine();
+                    switch (pickupDiscardkey)
+                    {
+                        case "y":
+                            Console.WriteLine($"You received: {allPlayers[i].PickupTopDiscard()}");
+                            Console.WriteLine($"Your cards are: {allPlayers[i].ToString()}");
+                            break;
+                        case "n":
+                            Console.WriteLine($"The dealer dealt you '{allPlayers[i].DrawCard()}'");
+                            Console.WriteLine($"There is now {iDeck.CardCount} cards left in the deck");
+                            Console.WriteLine($"Your cards are: {allPlayers[i].ToString()}");
+                            break;
+                        default:
+                            Console.WriteLine("Invalid input");
+                            break;
+                    }
+                    Console.WriteLine("Test a word you might have for points value? (y/n): ");
+                    string testWordKey = Console.ReadLine();
+                    switch (testWordKey)
+                    {
+                        case "y":
+                            Console.WriteLine($"Enter a word using your letters {allPlayers[i].ToString()} leaving a space between cards: ");
+                            string candidateWord = Console.ReadLine();
+                            int wordValue = allPlayers[i].TestWord(candidateWord);
+                            Console.WriteLine($"The word [{candidateWord}] is worth {wordValue} points");
+                            if (wordValue > 0)
+                            {
+                                Console.WriteLine($"Would you like to play the word [{candidateWord}]? (y/n): ");
+                                string playWordKey = Console.ReadLine();
+                                switch(playWordKey)
+                                {
+                                    case "y":
+                                        allPlayers[i].PlayWord(candidateWord);
+                                        Console.WriteLine($"Your cards are now {allPlayers[i].ToString()} and you have {allPlayers[i].TotalPoints} points");
+                                        Console.WriteLine("Enter a card from your hand to discard: ");
+                                        string discard1 = Console.ReadLine();
+                                        allPlayers[i].Discard(discard1);
+                                        Console.WriteLine($"Your cards are now: {allPlayers[i].ToString()}");
+                                        break;
+                                    case "n":
+                                        Console.WriteLine("Not playing word...");
+                                        break;
+                                    default:
+                                        Console.WriteLine("Invalid input");
+                                        break;
+                                }
+                                break;
+                            }
+                            break;
+                        case "n":
+                            Console.WriteLine("Enter a card from your hand to discard: ");
+                            string discard2 = Console.ReadLine();
+                            allPlayers[i].Discard(discard2);
+                            Console.WriteLine($"Your cards are now: {allPlayers[i].ToString()}");
+                            break;
+                        default:
+                            Console.WriteLine("Invalid input");
+                            break;
+                    }
                 }
             }
             

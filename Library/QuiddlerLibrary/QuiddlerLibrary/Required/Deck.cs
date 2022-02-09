@@ -41,6 +41,8 @@ namespace QuiddlerLibrary
         {
             InitializeNewDeck();
             this.discardPile = new Stack<Card>();
+            this.discardPile.Push(cardsList[cardsList.Count - 1]);
+            this.cardsList.RemoveAt(cardsList.Count - 1);
         }
 
         private void InitializeNewDeck()
