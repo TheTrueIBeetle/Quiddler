@@ -19,7 +19,7 @@ namespace QuiddlerClient
             // holds all the players playing
             List<IPlayer> allPlayers = new List<IPlayer>();
             
-            QuiddlerLibrary.Deck iDeck = new QuiddlerLibrary.Deck();
+            QuiddlerLibrary.IDeck iDeck = new QuiddlerLibrary.Deck();
             Console.WriteLine(iDeck.About);
 
             Console.WriteLine($"\nDeck initialized with the following {iDeck.CardCount} cards:");
