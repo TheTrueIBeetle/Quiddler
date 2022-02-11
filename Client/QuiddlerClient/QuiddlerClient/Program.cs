@@ -18,7 +18,8 @@ namespace QuiddlerClient
         {
             // holds all the players playing
             List<IPlayer> allPlayers = new List<IPlayer>();
-            
+
+            // instance of deck interface
             QuiddlerLibrary.IDeck iDeck = new QuiddlerLibrary.Deck();
             Console.WriteLine(iDeck.About);
 
@@ -40,10 +41,10 @@ namespace QuiddlerClient
             bool gameNotDone = true;
             while (gameNotDone)
             {
-                for(int i = 0; i < allPlayers.Count; i++)
+                for (int i = 0; i < allPlayers.Count; i++)
                 {
                     Console.WriteLine("\n--------------------------------------------------------------");
-                    Console.WriteLine($"Player '{i + 1} ({allPlayers[i].TotalPoints} points)");
+                    Console.WriteLine($"Player {i + 1} ({allPlayers[i].TotalPoints} points)");
                     Console.WriteLine("--------------------------------------------------------------\n");
 
                     Console.WriteLine($"The deck now contains the following {iDeck.CardCount} cards...");
@@ -52,6 +53,7 @@ namespace QuiddlerClient
                     Console.WriteLine($"\nYour cards are: {allPlayers[i].ToString()}");
                     Console.WriteLine($"Do you want the top card in the discard pile which is '{iDeck.TopDiscard}'? (y/n): ");
                     string pickupDiscardkey = Console.ReadLine();
+
                     switch (pickupDiscardkey)
                     {
                         case "y":
@@ -67,6 +69,7 @@ namespace QuiddlerClient
                             Console.WriteLine("Invalid input");
                             break;
                     }
+
                     Console.WriteLine("Test a word you might have for points value? (y/n): ");
                     string testWordKey = Console.ReadLine();
                     switch (testWordKey)
@@ -80,7 +83,7 @@ namespace QuiddlerClient
                             {
                                 Console.WriteLine($"Would you like to play the word [{candidateWord}]? (y/n): ");
                                 string playWordKey = Console.ReadLine();
-                                switch(playWordKey)
+                                switch (playWordKey)
                                 {
                                     case "y":
                                         allPlayers[i].PlayWord(candidateWord);
@@ -111,6 +114,7 @@ namespace QuiddlerClient
                             break;
                     }
                 }
+
                 Console.WriteLine("Would you like each player to take another turn? (y/n): ");
                 string key = Console.ReadLine();
                 switch (key)
@@ -132,11 +136,6 @@ namespace QuiddlerClient
                         break;
                 }
             }
-            
-
-            /*       
-            Console.WriteLine("\npoints of card v: " + deck.GetPointsForCard("v"));
-            */
         }
 
         public static int GetNumPlayers()

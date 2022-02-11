@@ -32,6 +32,7 @@ namespace QuiddlerLibrary
         9, 9, 10, 10, 11, 12, 13, 14, 15};
 
         internal Card discardEntity;
+        public string About => "Quiddler (TM) Library, Michael I & Luke B.";
         internal int cardsDrawnTotal = 0; //This member keeps track of all players cards in hand at all times
 
         // holds the list of card letters & their counts
@@ -44,6 +45,7 @@ namespace QuiddlerLibrary
             this.cardsList.RemoveAt(cardsList.Count - 1);
         }
 
+        // initialize a new deck and add it to cardsList
         private void InitializeNewDeck()
         {
             cardsList = new List<Card>();
@@ -58,14 +60,10 @@ namespace QuiddlerLibrary
                     valueCounter++;
                 }
             }
-
-            // shuffle (not sure if shuffle here or in a function) 
+            // shuffle the cards
             Random random = new Random();
             cardsList = cardsList.OrderBy(card => random.Next()).ToList();
         }
-    
-
-        public string About => "Quiddler (TM) Library, Michael I & Luke B.";
 
         public int cardsPerPlayer;
         public int CardsPerPlayer
@@ -93,6 +91,7 @@ namespace QuiddlerLibrary
 
         public int CardCount { get { return 118 - cardsDrawnTotal; } }
 
+        // create a new player
         public IPlayer NewPlayer()
         {
             Player p = new Player(this); //Giving player constructor an instance of this deck
@@ -139,6 +138,7 @@ namespace QuiddlerLibrary
             return letterCounter;
         }
 
+        // return the card letters and their associated letter counter
         public override string ToString()
         {
             string cardString = "";

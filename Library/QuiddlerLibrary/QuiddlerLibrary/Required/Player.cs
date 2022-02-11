@@ -36,9 +36,9 @@ namespace QuiddlerLibrary
 
         public bool Discard(string card)
         {
-            //Do a check to see if string is a valid letter (using cards letter prop)
+            // do a check to see if string is a valid letter (using cards letter prop)
             for (int i = 0; i < cardsInHand.Count; i++)
-            {
+            {               
                 if (card == cardsInHand[i].Letter)
                 {
                     cardsInHand.RemoveAt(i);
@@ -49,16 +49,18 @@ namespace QuiddlerLibrary
             return false;
         }
 
+        // function to return a card that was drawn
         public string DrawCard()
         {
             this.deck.cardsDrawnTotal++;
             this.cardsInHand.Add(deck.cardsList.ElementAt(deck.cardsList.Count - 1));
             string cardDrawn = deck.cardsList.ElementAt(deck.cardsList.Count - 1).Letter;
 
-            this.deck.cardsList.RemoveAt(deck.cardsList.Count - 1); //Removes card drawn from deck
+            this.deck.cardsList.RemoveAt(deck.cardsList.Count - 1); // removes card drawn from deck
             return cardDrawn;
         }
 
+        // function to return the top discard card
         public string PickupTopDiscard()
         {
             string discardCard = this.deck.discardEntity.Letter;
@@ -67,9 +69,10 @@ namespace QuiddlerLibrary
             return discardCard;
         }
 
+        // returns points for word that user entered
         public int PlayWord(string candidate)
         {
-            //Trim string first so there is no whitespace
+            // trim string first so there is no whitespace
             string trimmedString = String.Concat(candidate.Where(c => !Char.IsWhiteSpace(c)));
 
             int pointsForWord = TestWord(candidate);
@@ -94,20 +97,21 @@ namespace QuiddlerLibrary
             return pointsForWord;
         }
 
+        // returns cards point value if the word the user entered exists 
         public int TestWord(string candidate)
         {
-            //Trim string first so there is no whitespace
+            // trim string first so there is no whitespace
             string trimmedString = String.Concat(candidate.Where(c => !Char.IsWhiteSpace(c)));
 
             int accumulativeScore = 0;
             if (SpellChecker.CheckSpelling(trimmedString))
             {
-                //Get points that word is worth using card's combo
+                // get points that word is worth using card's combo
                 char[] charArr = trimmedString.ToCharArray();
                 foreach (char c in charArr)
                 {
                     string characterStr = c.ToString();
-                    //Now search for card with this letter (in string form), then grab point value
+                    // now search for card with this letter (in string form), then grab point value
                     for (int i = 0; i < cardsInHand.Count; i++)
                     {
                         if (characterStr == cardsInHand.ElementAt(i).Letter)
@@ -118,16 +122,17 @@ namespace QuiddlerLibrary
                     }
                 }
             }
-            return accumulativeScore; //Returns 0 if spellcheck fails
+            return accumulativeScore; // returns 0 if spellcheck fails
         }
 
+        // return cards based on how many user has in hand
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("[");
             foreach (Card c in cardsInHand)
             {
-                sb.Append(c.Letter);
+                sb.Append(c.Letter);                  
                 sb.Append(" ");
             }
             sb.Append("]");
