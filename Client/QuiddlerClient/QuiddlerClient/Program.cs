@@ -27,9 +27,22 @@ namespace QuiddlerClient
             Console.WriteLine(iDeck.ToString());
 
             int numPlayers = GetNumPlayers();
-            int numCardsToEachPlayer = NumCardsDealtToEachPlayer();
-
-            iDeck.CardsPerPlayer = numCardsToEachPlayer;
+            bool correctVal = false;
+            do
+            {
+                int numCardsToEachPlayer = NumCardsDealtToEachPlayer();
+                try
+                {
+                    iDeck.CardsPerPlayer = numCardsToEachPlayer;
+                    correctVal = true;
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    Console.WriteLine("\nPlease enter an in-range number of cards to be dealt");
+                }
+            } while (correctVal == false);
+           
+            
             Console.WriteLine($"\nCards were dealt to {numPlayers} player(s)");
 
             // add each player to allPlayers
@@ -142,10 +155,21 @@ namespace QuiddlerClient
         {
             string playerCountInput;
             int playerCountInputToInt;
+            do
+            {
+                Console.Write("\nHow many players are there? (1-8): ");
+                playerCountInput = Console.ReadLine();
+                playerCountInputToInt = Convert.ToInt32(playerCountInput);
 
-            Console.Write("\nHow many players are there? (1-8): ");
-            playerCountInput = Console.ReadLine();
-            playerCountInputToInt = Convert.ToInt32(playerCountInput);
+                if (playerCountInputToInt >= 1 && playerCountInputToInt <= 8)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Please provide an in-range number of players");
+                }
+            } while (true);
 
             return playerCountInputToInt;
         }
