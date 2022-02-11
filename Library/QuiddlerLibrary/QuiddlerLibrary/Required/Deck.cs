@@ -31,7 +31,7 @@ namespace QuiddlerLibrary
         private readonly int[] CardPoints = {2, 2, 2, 2, 3, 3, 3, 4, 4, 5, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8,
         9, 9, 10, 10, 11, 12, 13, 14, 15};
 
-        internal Stack<Card> discardPile;
+        internal Card discardEntity;
         internal int cardsDrawnTotal = 0; //This member keeps track of all players cards in hand at all times
 
         // holds the list of card letters & their counts
@@ -40,8 +40,7 @@ namespace QuiddlerLibrary
         public Deck()
         {
             InitializeNewDeck();
-            this.discardPile = new Stack<Card>();
-            this.discardPile.Push(cardsList[cardsList.Count - 1]);
+            this.discardEntity = cardsList[cardsList.Count - 1];
             this.cardsList.RemoveAt(cardsList.Count - 1);
         }
 
@@ -84,11 +83,11 @@ namespace QuiddlerLibrary
         public string TopDiscard 
         { 
             get {
-                if (discardPile.Peek().Letter == null)
+                if (this.discardEntity == null)
                 {
                     return "";
                 }
-                return discardPile.Peek().Letter;
+                return this.discardEntity.Letter;
             } 
         }
 
@@ -99,7 +98,6 @@ namespace QuiddlerLibrary
             Player p = new Player(this); //Giving player constructor an instance of this deck
             for (int i = 0; i < CardsPerPlayer; i++)
             {
-                // allPlayerCardsTotal++;
                 p.DrawCard();
             }
             return p;

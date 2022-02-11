@@ -37,17 +37,7 @@ namespace QuiddlerClient
                 allPlayers.Add(iDeck.NewPlayer());
             }
 
-            /*try
-            {
-                Console.WriteLine($"\nThe top card which was '{iDeck.TopDiscard}' was moved to the discard pile");
-            }
-            catch (InvalidOperationException)
-            {
-                Console.WriteLine("Discard pile is empty");
-            }*/
-
             bool gameNotDone = true;
-            // ADD: end conditition 
             while (gameNotDone)
             {
                 for(int i = 0; i < allPlayers.Count; i++)
@@ -120,6 +110,26 @@ namespace QuiddlerClient
                             Console.WriteLine("Invalid input");
                             break;
                     }
+                }
+                Console.WriteLine("Would you like each player to take another turn? (y/n): ");
+                string key = Console.ReadLine();
+                switch (key)
+                {
+                    case "y":
+                        continue;
+                    case "n":
+                        Console.WriteLine("Retiring the game..");
+                        Console.WriteLine("\nFinal scores:");
+                        Console.WriteLine("--------------------");
+                        for (int h = 0; h < allPlayers.Count; h++)
+                        {
+                            Console.WriteLine($"Player {h + 1}: {allPlayers[h].TotalPoints} points");
+                        }
+                        Console.WriteLine("\nGame over");
+                        gameNotDone = false;
+                        break;
+                    default:
+                        break;
                 }
             }
             

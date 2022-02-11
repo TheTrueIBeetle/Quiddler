@@ -39,10 +39,10 @@ namespace QuiddlerLibrary
             //Do a check to see if string is a valid letter (using cards letter prop)
             for (int i = 0; i < cardsInHand.Count; i++)
             {
-                if (card == cardsInHand.ElementAt(i).Letter)
+                if (card == cardsInHand[i].Letter)
                 {
                     cardsInHand.RemoveAt(i);
-                    this.deck.discardPile.Push(cardsInHand.ElementAt(i));
+                    this.deck.discardEntity = cardsInHand[i];
                     return true;
                 }
             }
@@ -61,8 +61,9 @@ namespace QuiddlerLibrary
 
         public string PickupTopDiscard()
         {
-            string discardCard = this.deck.discardPile.Peek().Letter;
-            this.deck.discardPile.Pop();
+            string discardCard = this.deck.discardEntity.Letter;
+            this.cardsInHand.Add(deck.discardEntity);
+            this.deck.discardEntity = null;
             return discardCard;
         }
 
